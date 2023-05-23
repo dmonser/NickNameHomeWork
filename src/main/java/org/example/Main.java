@@ -25,26 +25,41 @@ public class Main {
 //            }
 //        }).start();
 
-        new Thread(() -> {  // fff
+//        new Thread(() -> {  // fff
+//           for (String s : texts) {
+//                char c = s.charAt(0);
+//                boolean same = true;
+//                for (char check : s.toCharArray()) {
+//                    if (!(check == c)) {
+//                        same = false;
+//                    }
+//                }
+//                if (same){
+//                    System.out.println(s);
+//                }
+//           }
+//        }).start();
+
+        new Thread(() -> {  // ppfff
            for (String s : texts) {
-                char c = s.charAt(0);
-                boolean same = true;
-                for (char check : s.toCharArray()) {
-                    if (!(check == c)) {
-                        same = false;
-                    }
-                }
-                if (same){
-                    System.out.println(s);
-                }
+               char[] chars = s.toCharArray();
+               boolean same = true;
+
+               for (int i = 0; i < chars.length - 1; i++) {
+                   char next = chars[i + 1];
+                   if (chars[i] == next || chars[i] == (next += 1)) {
+                       continue;
+                   } else {
+                       same = false;
+                       break;
+                   }
+               }
+
+               if (same) {
+                   System.out.println(s);
+               }
            }
         }).start();
-
-//        new Thread(() -> {  // ppfff
-//           for (String s : texts) {
-//
-//           }
-//        });
     }
 
     public static String generateText(String letters, int length) {
